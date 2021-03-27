@@ -4,19 +4,19 @@ const optMenu = [
   {
     type: 'list',
     name: 'opt',
-    message: '¿Qué desea hacer?',
+    message: 'What would you like to do?',
     choices: [
       {
         value: 1,
-        name: `${'1.'.blue} Buscar Ciudad`
+        name: `${'1.'.blue} Find the place`
       },
       {
         value: 2,
-        name: `${'2.'.blue} Historial`
+        name: `${'2.'.blue} Search history`
       },
       {
         value: 0,
-        name: `${'0.'.blue} Salir\n`
+        name: `${'0.'.blue} Exit\n`
       }
     ]
   }
@@ -25,7 +25,7 @@ const optMenu = [
 const inquirerMenu = async () => {
   console.clear();
   console.log('==========================='.green);
-  console.log('   Seleccione una opción   '.green);
+  console.log(`      Select an ${'option'.blue}     `.green);
   console.log('===========================\n'.green);
   const {opt} = await inquirer.prompt(optMenu);
   return opt;
@@ -35,7 +35,7 @@ const pausa = async () => {
   const {opt} = await inquirer.prompt([{
     type: 'input',
     name: 'opt',
-    message: `\nPresione ${'ENTER'.blue} para continuar\n`
+    message: `\nPress ${'ENTER'.blue} to continue\n`
   }]);
   return opt;
 }
@@ -46,7 +46,7 @@ const readInput = async (message) => {
     message,
     validate(value) {
       if (value.length === 0)
-        return 'Por favor ingrese un valor';
+        return 'You must enter a value';
       else
         return true;
     }
@@ -59,13 +59,13 @@ const listTasksDelete = async (tareas = []) => {
     return {value: tarea.id, name: `${idx} ${tarea.desc}`}
   })
   choices.push({
-    value: 0, name: '0.'.blue + ' Cancelar'
+    value: 0, name: '0.'.blue + ' Cancel'
   });
   const optListTasks = [
     {
       type: 'list',
       name: 'id',
-      message: 'Borrar',
+      message: 'Delete',
       choices
     }
   ];
@@ -89,7 +89,7 @@ const showCheckList = async (tareas = []) => {
     {
       type: 'checkbox',
       name: 'ids',
-      message: 'Seleccionar',
+      message: 'To select',
       choices
     }
   ];

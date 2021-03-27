@@ -24,7 +24,7 @@ const main = async () => {
     opt = await inquirerMenu();
     switch (opt) {
       case 1:
-        const place = await readInput('Ciudad: ');
+        const place = await readInput('Place: ');
         await searches.city(place);
         /*tareas.createTask(desc);*/
         //Mostrar mensaje 
@@ -37,13 +37,13 @@ const main = async () => {
 
         //Mostrar Resultados
 
-        console.log('\nInformación de la ciudad)\n'.green);
-        console.log('Ciudad:'.green,);
+        console.log('\nPlace Information\n'.green);
+        console.log('Place:'.green,);
         console.log('Lat:'.green,);
         console.log('Lng:'.green,);
-        console.log('Temperatura: '.green,);
-        console.log('Minima: '.green,);
-        console.log('Maxima: '.green,);
+        console.log('Temperature: '.green,);
+        console.log('Minimun: '.green,);
+        console.log('Maximun: '.green,);
 
         break;
       case 2:
