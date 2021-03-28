@@ -3,8 +3,8 @@ require('dotenv').config();
 const {
   inquirerMenu,
   readInput,
-  pausa/*,
-  listTasksDelete,
+  pause,
+  listPlaces/*,
   confirm,
   showCheckList*/
 } = require('./helpers/inquirer');
@@ -24,34 +24,36 @@ const main = async () => {
     opt = await inquirerMenu();
     switch (opt) {
       case 1:
-        const place = await readInput('Place: ');
-        await searches.city(place);
-        /*tareas.createTask(desc);*/
         //Mostrar mensaje 
-
-        //Buscar los lugares
-
+        const placeSearch = await readInput('Place: ');
+        //Buscar los lugares 
+        const places = await searches.citys(placeSearch);
         //Selecionar el lugar
-
-        //Clima
-
-        //Mostrar Resultados
-
-        console.log('\nPlace Information\n'.green);
-        console.log('Place:'.green,);
-        console.log('Lat:'.green,);
-        console.log('Lng:'.green,);
-        console.log('Temperature: '.green,);
-        console.log('Minimun: '.green,);
-        console.log('Maximun: '.green,);
-
+        const id = await listPlaces(places);
+        if(id !== 0){
+          const selectedPlace = places.find( l => l.id === id);
+          //Clima
+          const weatherPlace = await searches.weatherPlace(selectedPlace.lat,selectedPlace.lng);
+          //Mostrar Resultados
+          console.log('\nInformation\n'.green);
+          console.log('Searched data:'.cyan, placeSearch.blue);
+          console.log('Selected place:'.cyan, selectedPlace.name.blue);
+          console.log('\nApi results'.green);
+          console.log('Place:'.cyan, weatherPlace.name.blue);
+          console.log('Lat:'.cyan, selectedPlace.lat);
+          console.log('Lng:'.cyan, selectedPlace.lng);
+          console.log('Temperature: '.cyan, weatherPlace.temp);
+          console.log('Minimun: '.cyan, weatherPlace.min);
+          console.log('Maximun: '.cyan, weatherPlace.max);
+          console.log('Weather: '.cyan, weatherPlace.desc.blue);
+        }
         break;
       case 2:
         tareas.listAll();
         break;
     }
     /*dbSave(tareas.listToArray);*/
-    if (opt !== 0) await pausa();
+    if (opt !== 0) await pause();
   } while (opt !== 0);
 
 }

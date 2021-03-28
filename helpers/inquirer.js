@@ -31,7 +31,7 @@ const inquirerMenu = async () => {
   return opt;
 }
 
-const pausa = async () => {
+const pause = async () => {
   const {opt} = await inquirer.prompt([{
     type: 'input',
     name: 'opt',
@@ -53,10 +53,10 @@ const readInput = async (message) => {
   }]);
   return desc;
 }
-const listTasksDelete = async (tareas = []) => {
-  const choices = tareas.map((tarea, i) => {
+const listPlaces = async (places) => {
+  const choices = places.map((places, i) => {
     const idx = `${i + 1}.`.blue;
-    return {value: tarea.id, name: `${idx} ${tarea.desc}`}
+    return {value: places.id, name: `${idx} ${places.name}`}
   })
   choices.push({
     value: 0, name: '0.'.blue + ' Cancel'
@@ -65,7 +65,7 @@ const listTasksDelete = async (tareas = []) => {
     {
       type: 'list',
       name: 'id',
-      message: 'Delete',
+      message: 'Select a place',
       choices
     }
   ];
@@ -99,9 +99,9 @@ const showCheckList = async (tareas = []) => {
 
 module.exports = {
   inquirerMenu,
-  pausa,
+  pause,
   readInput,
-  listTasksDelete,
+  listPlaces,
   confirm,
   showCheckList
 };
