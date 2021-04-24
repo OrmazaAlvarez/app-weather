@@ -30,26 +30,32 @@ const main = async () => {
         const places = await searches.citys(placeSearch);
         //Selecionar el lugar
         const id = await listPlaces(places);
-        if(id !== 0){
-          const selectedPlace = places.find( l => l.id === id);
-          //Clima
-          const weatherPlace = await searches.weatherPlace(selectedPlace.lat,selectedPlace.lng);
-          //Mostrar Resultados
-          console.log('\nInformation\n'.green);
-          console.log('Searched data:'.cyan, placeSearch.blue);
-          console.log('Selected place:'.cyan, selectedPlace.name.blue);
-          console.log('\nApi results'.green);
-          console.log('Place:'.cyan, weatherPlace.name.blue);
-          console.log('Lat:'.cyan, selectedPlace.lat);
-          console.log('Lng:'.cyan, selectedPlace.lng);
-          console.log('Temperature: '.cyan, weatherPlace.temp);
-          console.log('Minimun: '.cyan, weatherPlace.min);
-          console.log('Maximun: '.cyan, weatherPlace.max);
-          console.log('Weather: '.cyan, weatherPlace.desc.blue);
-        }
+        if (id === 0) continue;
+        const selectedPlace = places.find(l => l.id === id);
+        searches.addHistory(selectedPlace.name);
+        //Clima
+        const weatherPlace = await searches.weatherPlace(selectedPlace.lat, selectedPlace.lng);
+        //Mostrar Resultados
+        console.log('\nInformation\n'.green);
+        console.log('Searched data:'.cyan, placeSearch.blue);
+        console.log('Selected place:'.cyan, selectedPlace.name.blue);
+        console.log('\nApi results'.green);
+        console.log('Place:'.cyan, weatherPlace.name.blue);
+        console.log('Lat:'.cyan, selectedPlace.lat);
+        console.log('Lng:'.cyan, selectedPlace.lng);
+        console.log('Temperature: '.cyan, weatherPlace.temp);
+        console.log('Minimun: '.cyan, weatherPlace.min);
+        console.log('Maximun: '.cyan, weatherPlace.max);
+        console.log('Weather: '.cyan, weatherPlace.desc.blue);
         break;
       case 2:
-        tareas.listAll();
+        const history = searches.listHistory
+        if (history) {
+          history.forEach((search, i) => {
+            const idx = `${i + 1}.`.blue;
+            console.log(`${idx} ${search.cyan}`);
+          });
+        } else {console.log("Empty search history");}
         break;
     }
     /*dbSave(tareas.listToArray);*/
