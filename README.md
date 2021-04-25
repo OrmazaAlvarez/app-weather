@@ -27,5 +27,5 @@ Pequeña aplicación de consola con menún interactivo, su principal funcion es 
     ```
     Al ejecutarse se mostrará el menú principal
 
-![](assets/Captura de pantalla -2021-04-25 16-24-50.png)
+![](assets/home.png)
 
