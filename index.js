@@ -4,27 +4,28 @@ const {
   inquirerMenu,
   readInput,
   pause,
-  listPlaces/*,
-  confirm,
-  showCheckList*/
+  listPlaces,
+  confirm
 } = require('./helpers/inquirer');
-/*const {dbSave, dbRead} = require('./helpers/fileSave');
-const Tasks = require('./models/tasks');
-console.clear();*/
 const Searches = require('./models/searches');
 const main = async () => {
   let opt = -1;
   const searches = new Searches();
-  /*  conrespst tareas = new Tasks();
-    const tareasDB = dbRead();
-    if (tareasDB) {
-      tareas.readTaskFromArray(tareasDB);
-    }*/
   do {
     opt = await inquirerMenu();
+    if (!searches.MaxboxToken && opt > 0 && opt < 3) {
+      console.log(`You need to register the MAPBOX Token to use this option`);
+      await pause();
+      continue;
+    }
+    if (!searches.WeatherApiKey && opt > 0 && opt < 3) {
+      console.log(`You need to register the ApiKEY of OPENWEATHER to use this option`);
+      await pause();
+      continue;
+    }
     switch (opt) {
       case 1:
-        //Mostrar mensaje 
+        //Mostrar mensaje
         const placeSearch = await readInput('Place: ');
         //Buscar los lugares 
         const places = await searches.citys(placeSearch);
@@ -43,9 +44,9 @@ const main = async () => {
         console.log('Place:'.cyan, weatherPlace.name.blue);
         console.log('Lat:'.cyan, selectedPlace.lat);
         console.log('Lng:'.cyan, selectedPlace.lng);
-        console.log('Temperature: '.cyan, weatherPlace.temp);
-        console.log('Minimun: '.cyan, weatherPlace.min);
-        console.log('Maximun: '.cyan, weatherPlace.max);
+        console.log('Temperature: '.cyan, weatherPlace.temp, '°C');
+        console.log('Minimun: '.cyan, weatherPlace.min, '°C');
+        console.log('Maximun: '.cyan, weatherPlace.max, '°C');
         console.log('Weather: '.cyan, weatherPlace.desc.blue);
         break;
       case 2:
@@ -56,6 +57,28 @@ const main = async () => {
             console.log(`${idx} ${search.cyan}`);
           });
         } else {console.log("Empty search history");}
+        break;
+      case 3:
+        const newToken = await readInput('MAPBOX Token: ');
+        var ok = true;
+        if (searches.MaxboxToken) {
+          ok = await confirm('Do you want to replace the current Token');
+        }
+        if (ok) {
+          await searches.saveMaxboxToken(newToken);
+          console.log('Saved token'.green);
+        }
+        break;
+      case 4:
+        const newKey = await readInput('OPENWEATHER ApiKEY: ');
+        var ok = true;
+        if (searches.WeatherApiKey) {
+          ok = await confirm('Do you want to replace the current ApiKEY');
+        }
+        if (ok) {
+          await searches.saveWeatherApiKey(newKey);
+          console.log('Saved ApiKey'.green);
+        }
         break;
     }
     /*dbSave(tareas.listToArray);*/

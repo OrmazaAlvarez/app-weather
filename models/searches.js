@@ -1,27 +1,31 @@
 const {dbRead, dbSave} = require('../helpers/fileSave');
 const axios = require('axios');
+const Keys = require('./keys');
 
-class Searches {
-  constructor() {
-    //TODO: Leer db si existe
-  }
+class Searches extends Keys {
 
   get paramsMapBox() {
     return {
-      'access_token': process.env.MAPBOX_KEY,
+      'access_token': this.MaxboxToken,
       'limit': 5,
       'language': 'es'
     };
   }
+
+  setKeys(keys) {
+    this.keys = keys;
+  }
+
   paramsOpenWeather(lat, lon) {
     return {
       'lat': lat,
       'lon': lon,
-      'appid': process.env.OPENWEATHER_KEY,
+      'appid': this.WeatherApiKey,
       'units': 'metric',
       'lang': 'es'
     };
   }
+
   async citys(place) {
     try {
 
@@ -41,6 +45,7 @@ class Searches {
       return []; // retornar los lugares
     }
   }
+
   async weatherPlace(lat, lon) {
     try {
       const instance = axios.create({
@@ -60,6 +65,7 @@ class Searches {
       return []; // retornar los lugares
     }
   }
+
   async addHistory(name) {
     let history = dbRead();
     if (history) {

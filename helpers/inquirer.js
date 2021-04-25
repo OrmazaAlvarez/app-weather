@@ -13,7 +13,15 @@ const optMenu = [
       {
         value: 2,
         name: `${'2.'.blue} Search history`
+      }, new inquirer.Separator(),
+      {
+        value: 3,
+        name: `${'3.'.blue} Save the MapBox Token`
       },
+      {
+        value: 4,
+        name: `${'4.'.blue} Save the OpenWeather ApiKey`
+      }, new inquirer.Separator(),
       {
         value: 0,
         name: `${'0.'.blue} Exit\n`
@@ -80,28 +88,10 @@ const confirm = async (message) => {
   }]);
   return ok;
 }
-const showCheckList = async (tareas = []) => {
-  const choices = tareas.map((tarea, i) => {
-    const idx = `${i + 1}.`.blue;
-    return {value: tarea.id, name: `${idx} ${tarea.desc}`, checked: tarea.completadoEn ? true : false}
-  })
-  const optCheckList = [
-    {
-      type: 'checkbox',
-      name: 'ids',
-      message: 'To select',
-      choices
-    }
-  ];
-  const {ids} = await inquirer.prompt(optCheckList);
-  return ids;
-}
-
 module.exports = {
   inquirerMenu,
   pause,
   readInput,
   listPlaces,
-  confirm,
-  showCheckList
+  confirm
 };
