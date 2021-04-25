@@ -19,7 +19,7 @@ Pequeña aplicación de consola con menún interactivo, su principal funcion es 
     npm install
     ```
 
-    **Iniciar la aplicación**
+    **Iniciar la aplicación: **
     Para usar la aplicacion debe ejecutar los siguientes comandos
     ```
     cd app-weather
@@ -27,5 +27,5 @@ Pequeña aplicación de consola con menún interactivo, su principal funcion es 
     ```
     Al ejecutarse se mostrará el menú principal
 
-    ![](assets/Captura de pantalla -2021-04-25 16-24-50.png)
+![](assets/Captura de pantalla -2021-04-25 16-24-50.png)
 
