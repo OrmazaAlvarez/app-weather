@@ -60,23 +60,25 @@ Se usa [Weather API](https://openweathermap.org/api) de OpenWeather para obtener
 Use las opciones 3 y 4 para registrar o actualizar las claves.
 
 * **Registrando el Token de Mapbox**
-  ![](assets/selectSaveMapbox.png)
-  ![](assets/inputMapboxToken.png)
-  ![](assets/savedMapboxToken.png)
+
+![](assets/selectSaveMapbox.png)
+![](assets/inputMapboxToken.png)
+![](assets/savedMapboxToken.png)
 
 * **Registrando el ApiKey de Open Weather**
-  ![](assets/selectSaveOpenWeather.png)
-  ![](assets/inputApiKeyOpenWeather.png)
-  ![](assets/savedApiKeyOpenWeather.png)
+
+![](assets/selectSaveOpenWeather.png)
+![](assets/inputApiKeyOpenWeather.png)
+![](assets/savedApiKeyOpenWeather.png)
 
 * **Modificar el Token de Mapbox: ** Para actualizar se realizan los mismos pasos, con la diferencia de que se agrega una confirmación al momento de salvar la nueva clave,
 
-  ![](assets/selectSaveMapbox.png)
-  ![](assets/inputMapboxToken.png)
-  ![](assets/confirmSavedToken.png)
-  ![](assets/updatedTokenMapbox.png)
+![](assets/selectSaveMapbox.png)
+![](assets/inputMapboxToken.png)
+![](assets/confirmSavedToken.png)
+![](assets/updatedTokenMapbox.png)
 
 * **Mostrar el historial de búsqueda: ** La aplicacción guarda un historial de busqueda de hasta 5 lugares
 
-  ![](assets/selectHistory.png)
-  ![](assets/showHistory.png)
+![](assets/selectHistory.png)
+![](assets/showHistory.png)
